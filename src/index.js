@@ -8,6 +8,9 @@ import rootSaga from './sagas/rootSaga'
 import {Provider} from 'react-redux';
 import App from "./pages/App";
 import {BrowserRouter} from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'font-awesome/css/font-awesome.css';
+import './styles/base.css'
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
