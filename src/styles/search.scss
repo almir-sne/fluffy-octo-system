@@ -1,0 +1,43 @@
+@import "colors";
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+
+  .input-group-addon {
+    border: none;
+    padding: 0;
+  }
+
+  .select-wrapper {
+    display: inline;
+    select {
+      width: 70px;
+      border: none;
+      background: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      color: $buttonTextGreyHover;
+      &::-ms-expand {
+        display: none;
+      }
+      &:hover {
+        color: $buttonTextGrey;
+        background: #eeeeee;
+      }
+    }
+    &:after {
+      content: "\F063";
+      font: normal normal normal 13px/1 FontAwesome;
+      color: $buttonTextGrey;
+      right: 40px;
+      top: 9px;
+      position: absolute;
+      pointer-events: none;
+    }
+  }
+
+}

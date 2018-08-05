@@ -1,6 +1,7 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
 import {TrackCard, AlbumCard, ArtistCard} from "./components/Cards"
+import "../styles/search.scss"
 
 class Search extends Component {
     state = {queryType: "artist"};
@@ -23,11 +24,23 @@ class Search extends Component {
         const {artists, albums, tracks} = this.props.result || {};
         return (
             <Fragment>
-                <input type="text" name="query" onChange={this.handleChange}/>
-                <button onClick={this.search}> Search </button>
-                <select name="queryType" onChange={this.handleChange}>
-                    {this.options.map(({label, value}) => <option key={value} value={value}>{label}</option>)}
-                </select>
+                <div className="row search-box">
+                    <div className="col-sm-5">
+                        <div className="input-group">
+                            <input type="text" className="form-control" name="query" onChange={this.handleChange}/>
+                            <div className="input-group-addon">
+                                <div className="select-wrapper">
+                                    <select name="queryType" onChange={this.handleChange}>
+                                        {this.options.map(({label, value}) =>
+                                            <option key={value} value={value}>{label}</option>)}
+                                    </select>
+                                </div>
+                                <button className="btn" type="submit" onClick={this.search}> <i className="fa fa-search"/> </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
 
                 {artists && artists.items.map((item) =>
                     <ArtistCard key={item.id} card={item}/>)}
