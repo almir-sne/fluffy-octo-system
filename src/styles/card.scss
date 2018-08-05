@@ -1,0 +1,33 @@
+@import "colors";
+
+.card {
+  background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%);
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 15px;
+  margin: 5px;
+  text-align: center;
+  color: $defaultFontColor;
+
+
+  &.album {
+    min-height: 420px !important;
+  }
+
+  &.artist {
+    min-height: 350px !important;
+  }
+
+  &.track {
+    min-height: 450px !important;
+  }
+
+  .hide-overflow {
+    max-height: 60px;
+    overflow: hidden;
+  }
+
+  .separator {
+    margin: 10px 40px;
+  }
+}

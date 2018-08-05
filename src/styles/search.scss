@@ -1,5 +1,11 @@
 @import "colors";
 
+.container-fluid {
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
 .search-box {
   display: flex;
   justify-content: center;
