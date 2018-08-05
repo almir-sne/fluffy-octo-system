@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from "react-redux";
-import {parse} from "query-string";
+import {parse} from "../tools/query-string";
 import {Redirect} from "react-router-dom";
 
 class Callback extends Component {

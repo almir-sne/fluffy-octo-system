@@ -1,6 +1,6 @@
 import axios from "axios";
 import {client_id, redirect_uri} from "../secrets";
-import {stringify} from "query-string";
+import {stringify} from "../tools/query-string";
 const response_type = 'token';
 
 const instance = axios.create({
