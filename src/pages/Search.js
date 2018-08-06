@@ -42,7 +42,8 @@ class Search extends Component {
                 <div className="container-fluid">
                     <SearchBox handleChange={this.handleChange} options={this.options} handleSearch={this.search}/>
 
-                    <div className="row card-container" hidden={selectedId || loading}>
+                    {!selectedId && !loading &&
+                    <div className="row card-container">
                         {artists && artists.items.map((item) =>
                             <ArtistCard key={item.id} card={item} onClick={this.selectArtist}/>)}
 
@@ -52,8 +53,9 @@ class Search extends Component {
                         {tracks && tracks.items.map((item) =>
                             <TrackCard key={item.id} card={item}/>)}
                     </div>
-
-                    <div className="card-container" hidden={!selectedId || loading}>
+                    }
+                    {selectedId && !loading &&
+                    <div className="card-container">
                         <button className="btn btn-primary green-button" onClick={reset}>
                             <i className="fa fa-chevron-left"/> Back
                         </button>
@@ -77,9 +79,12 @@ class Search extends Component {
                         </Fragment>
                         }
                     </div>
-                    <div className="center" hidden={!loading}>
+                    }
+                    {loading &&
+                    <div className="center">
                         <img alt="loading..." width="10%" src={loadingSVG}/>
                     </div>
+                    }
                 </div>
             </Fragment>
         )

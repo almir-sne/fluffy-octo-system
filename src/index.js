@@ -18,11 +18,11 @@ sagaMiddleware.run(rootSaga);
 
 function render() {
     ReactDOM.render(
-        <Provider store={store}>
-            <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
+            <Provider store={store}>
                 <App/>
-            </BrowserRouter>
-        </Provider>,
+            </Provider>
+        </BrowserRouter>,
         document.getElementById('root'));
 }
 

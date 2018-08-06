@@ -2,6 +2,7 @@
   "name": "fluffy-octo-system",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://almir-sne.github.io/fluffy-octo-system",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "axios": "^0.18.0",
@@ -55,7 +56,9 @@
   "scripts": {
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -100,6 +103,7 @@
     "extends": "react-app"
   },
   "devDependencies": {
+    "gh-pages": "^1.2.0",
     "node-sass": "^4.9.2",
     "sass-loader": "^7.1.0"
   }
