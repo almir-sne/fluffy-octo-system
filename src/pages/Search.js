@@ -1,7 +1,8 @@
 import React, {Component, Fragment} from 'react';
 import {connect} from "react-redux";
-import {TrackCard, AlbumCard, ArtistCard} from "./components/Cards"
+import {TrackCard, AlbumCard, ArtistCard, TrackCardBasic} from "./components/Cards"
 import "../styles/search.scss"
+import SearchBox from "./components/SearchBox"
 
 class Search extends Component {
     state = {queryType: "artist"};
@@ -20,39 +21,53 @@ class Search extends Component {
         {label: "Track", value: "track"},
     ];
 
+    selectAlbum = ({id}) => {
+        this.props.tracksByAlbum(id);
+    };
+
+    selectArtist = ({id}) => {
+        this.props.albumsByArtist(id);
+    };
+
     render() {
-        const {artists, albums, tracks} = this.props.result || {};
+        const {artists, albums, tracks, albumsByArtist, tracksByAlbum} = this.props.result || {};
+        const {selectedId, reset} = this.props;
         return (
             <Fragment>
                 <div className="container-fluid">
-                    <div className="row search-box">
-                        <div className="col-sm-5">
-                            <div className="input-group">
-                                <input type="text" className="form-control" name="query" onChange={this.handleChange}/>
-                                <div className="input-group-addon">
-                                    <div className="select-wrapper">
-                                        <select name="queryType" onChange={this.handleChange}>
-                                            {this.options.map(({label, value}) =>
-                                                <option key={value} value={value}>{label}</option>)}
-                                        </select>
-                                    </div>
-                                    <button className="btn" type="submit" onClick={this.search}><i
-                                        className="fa fa-search"/></button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <SearchBox handleChange={this.handleChange} options={this.options} handleSearch={this.search}/>
 
-
-                    <div className="row">
+                    <div className="row card-container" hidden={selectedId}>
                         {artists && artists.items.map((item) =>
-                            <ArtistCard key={item.id} card={item}/>)}
+                            <ArtistCard key={item.id} card={item} onClick={this.selectArtist}/>)}
 
                         {albums && albums.items.map((item) =>
-                            <AlbumCard key={item.id} card={item}/>)}
+                            <AlbumCard key={item.id} card={item} onClick={this.selectAlbum}/>)}
 
                         {tracks && tracks.items.map((item) =>
                             <TrackCard key={item.id} card={item}/>)}
+                    </div>
+
+                    <div className="card-container" hidden={!selectedId}>
+                        <button onClick={reset}>Back</button>
+                        {albumsByArtist &&
+                        <Fragment>
+                            <h2> Albums </h2>
+                            <div className="row">
+                                {albumsByArtist.items.map((item) =>
+                                    <AlbumCard key={item.id} card={item} onClick={this.selectAlbum}/>)}
+                            </div>
+                        </Fragment>
+                        }
+                        {tracksByAlbum &&
+                        <Fragment>
+                            <h2> Tracks </h2>
+                            <div className="row">
+                                {tracksByAlbum.items.map((item) =>
+                                    <TrackCardBasic key={item.id} card={item}/>)}
+                            </div>
+                        </Fragment>
+                        }
                     </div>
                 </div>
             </Fragment>
@@ -62,13 +77,23 @@ class Search extends Component {
 
 const mapStateToProps = (reducer) => ({
     accessToken: reducer.accessToken,
-    result: reducer.result
+    result: reducer.result,
+    selectedId: reducer.selectedId,
 });
 
 const mapDispatchToProps = dispatch => ({
     search: (state) => {
         dispatch({type: 'SEARCH', ...state})
     },
+    reset: () => {
+        dispatch({type: 'RESET'})
+    },
+    albumsByArtist: (selectedId) => {
+        dispatch({type: 'ALBUMS_BY_ARTIST', selectedId})
+    },
+    tracksByAlbum: (selectedId) => {
+        dispatch({type: 'TRACKS_BY_ALBUM', selectedId})
+    }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Search);

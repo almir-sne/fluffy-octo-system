@@ -8,7 +8,8 @@
   margin: 5px;
   text-align: center;
   color: $defaultFontColor;
-
+  transition: transform .5s;
+  cursor: pointer;
 
   &.album {
     min-height: 420px !important;
@@ -20,6 +21,17 @@
 
   &.track {
     min-height: 450px !important;
+  }
+
+  &.simple-track:hover {
+    transform: scale(1.05);
+  }
+
+  &:hover {
+    transform: scale(1.1);
+    z-index: 1000;
+    color: white;
+    text-decoration: none;
   }
 
   .hide-overflow {
