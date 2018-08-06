@@ -6,17 +6,5 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  button {
-    background-color: $button;
-    font-weight: bold;
-    border: none;
-    color: $defaultFontColor;
-    transition: background-color 1s, color 1s;
-    &:hover {
-      background-color: $buttonHover;
-    }
-  }
-
 }
 

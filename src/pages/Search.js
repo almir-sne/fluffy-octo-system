@@ -33,7 +33,6 @@ class Search extends Component {
     render() {
         const {artists, albums, tracks, albumsByArtist, tracksByAlbum} = this.props.result || {};
         const {selectedId, reset, loading = false} = this.props;
-        console.log(loading)
         return (
             <Fragment>
                 <div className="container-fluid">
@@ -51,7 +50,10 @@ class Search extends Component {
                     </div>
 
                     <div className="card-container" hidden={!selectedId || loading}>
-                        <button onClick={reset}>Back</button>
+                        <button className="btn btn-primary green-button" onClick={reset}>
+                            <i className="fa fa-chevron-left"/> Back
+                        </button>
+
                         {albumsByArtist &&
                         <Fragment>
                             <h2> Albums </h2>

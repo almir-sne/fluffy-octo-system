@@ -7,7 +7,7 @@ class Login extends Component {
         return (
             <div className="login">
                 <h2> Welcome! You must login to Spotify to continue</h2>
-                <button className="btn btn-primary" onClick={this.props.login}> Login</button>
+                <button className="btn btn-primary green-button" onClick={this.props.login}> Login</button>
             </div>
         );
     }
