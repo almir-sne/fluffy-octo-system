@@ -8,6 +8,10 @@ import loadingSVG from "../loading.svg"
 class Search extends Component {
     state = {queryType: "artist"};
 
+    componentDidMount = () => {
+        this.props.loadFavorites();
+    };
+
     handleChange = ({target}) => {
         this.setState({[target.name]: target.value})
     };
@@ -74,7 +78,7 @@ class Search extends Component {
                         }
                     </div>
                     <div className="center" hidden={!loading}>
-                        <img width="10%" src={loadingSVG}/>
+                        <img alt="loading..." width="10%" src={loadingSVG}/>
                     </div>
                 </div>
             </Fragment>
@@ -101,6 +105,9 @@ const mapDispatchToProps = dispatch => ({
     },
     tracksByAlbum: (selectedId) => {
         dispatch({type: 'TRACKS_BY_ALBUM', selectedId})
+    },
+    loadFavorites: () => {
+        dispatch({type: 'LOAD_FAVORITES'})
     }
 });
 

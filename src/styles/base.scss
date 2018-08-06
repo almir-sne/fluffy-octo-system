@@ -24,4 +24,8 @@ h2 {
   &:hover {
     background-color: $buttonHover;
   }
+  &:active, &:focus {
+    background-color: $buttonHover;
+    color: $defaultFontColor;
+  }
 }

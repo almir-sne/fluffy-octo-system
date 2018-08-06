@@ -1,8 +1,10 @@
 import { fork } from 'redux-saga/effects';
 import spotifyWatcher from './spotifySaga'
+import fakeServerWatcher from "./fakeServerSaga"
 
 const sagas = [
-    spotifyWatcher
+    spotifyWatcher,
+    fakeServerWatcher
 ];
 
 export default function* root() {

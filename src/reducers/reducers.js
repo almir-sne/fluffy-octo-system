@@ -31,6 +31,12 @@ export default function (state = {}, action) {
             };
         case "RESET":
             return resetState(state);
+        case "UPDATE_FAVORITES":
+        case "LOAD_FAVORITES_SUCCESS":
+            return {
+                ...state,
+                favorites: action.favorites
+            };
         default:
             return state;
     }
