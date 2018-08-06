@@ -46,6 +46,12 @@
   }
 }
 
+.center{
+  display: flex;
+  justify-content: center;
+  height: 50%;
+}
+
 .card-container {
   padding: 30px;
 }

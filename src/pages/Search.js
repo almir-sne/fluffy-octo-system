@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import {TrackCard, AlbumCard, ArtistCard, TrackCardBasic} from "./components/Cards"
 import "../styles/search.scss"
 import SearchBox from "./components/SearchBox"
+import loadingSVG from "../loading.svg"
 
 class Search extends Component {
     state = {queryType: "artist"};
@@ -31,13 +32,14 @@ class Search extends Component {
 
     render() {
         const {artists, albums, tracks, albumsByArtist, tracksByAlbum} = this.props.result || {};
-        const {selectedId, reset} = this.props;
+        const {selectedId, reset, loading = false} = this.props;
+        console.log(loading)
         return (
             <Fragment>
                 <div className="container-fluid">
                     <SearchBox handleChange={this.handleChange} options={this.options} handleSearch={this.search}/>
 
-                    <div className="row card-container" hidden={selectedId}>
+                    <div className="row card-container" hidden={selectedId || loading}>
                         {artists && artists.items.map((item) =>
                             <ArtistCard key={item.id} card={item} onClick={this.selectArtist}/>)}
 
@@ -48,7 +50,7 @@ class Search extends Component {
                             <TrackCard key={item.id} card={item}/>)}
                     </div>
 
-                    <div className="card-container" hidden={!selectedId}>
+                    <div className="card-container" hidden={!selectedId || loading}>
                         <button onClick={reset}>Back</button>
                         {albumsByArtist &&
                         <Fragment>
@@ -69,6 +71,9 @@ class Search extends Component {
                         </Fragment>
                         }
                     </div>
+                    <div className="center" hidden={!loading}>
+                        <img width="10%" src={loadingSVG}/>
+                    </div>
                 </div>
             </Fragment>
         )
@@ -79,6 +84,7 @@ const mapStateToProps = (reducer) => ({
     accessToken: reducer.accessToken,
     result: reducer.result,
     selectedId: reducer.selectedId,
+    loading: reducer.loading
 });
 
 const mapDispatchToProps = dispatch => ({
