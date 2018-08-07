@@ -1,45 +1,60 @@
 @import "colors";
 
 .card {
-  background: linear-gradient(to bottom, #4c4c4c 0%,#595959 12%,#666666 25%,#474747 39%,#2c2c2c 50%,#111111 60%,#2b2b2b 76%,#1c1c1c 91%,#131313 100%);
-  border: 1px solid black;
-  border-radius: 5px;
-  padding: 15px;
-  margin: 5px;
-  text-align: center;
-  color: $defaultFontColor;
-  transition: transform .5s;
-  cursor: pointer;
+  display: grid;
+  padding: 5px;
+  a {
+    background: linear-gradient(to bottom, #4c4c4c 0%, #595959 12%, #666666 25%, #474747 39%, #2c2c2c 50%, #111111 60%, #2b2b2b 76%, #1c1c1c 91%, #131313 100%);
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    text-align: center;
+    color: $defaultFontColor;
+    transition: transform .5s;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-  &.album {
-    min-height: 420px !important;
-  }
+    &.album {
+      min-height: 460px !important;
+    }
 
-  &.artist {
-    min-height: 350px !important;
-  }
+    &.artist {
+      min-height: 390px !important;
+    }
 
-  &.track {
-    min-height: 450px !important;
-  }
+    &.track {
+      min-height: 510px !important;
+    }
 
-  &.simple-track:hover {
-    transform: scale(1.05);
-  }
+    &.simple-track {
+      text-align: left;
+      &:hover {
+        transform: scale(1.05);
+      }
 
-  &:hover {
-    transform: scale(1.1);
-    z-index: 1000;
-    color: white;
-    text-decoration: none;
-  }
+      .favorite-button {
+        button {
+          float: right;
+        }
+      }
+    }
 
-  .hide-overflow {
-    max-height: 60px;
-    overflow: hidden;
-  }
+    &:hover {
+      transform: scale(1.1);
+      z-index: 1000;
+      color: white;
+      text-decoration: none;
+    }
 
-  .separator {
-    margin: 10px 40px;
+    .hide-overflow {
+      max-height: 60px;
+      overflow: hidden;
+    }
+
+    .separator {
+      margin: 10px 40px;
+    }
   }
 }

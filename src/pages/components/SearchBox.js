@@ -2,7 +2,7 @@ import React from 'react';
 
 export default ({handleChange, options, handleSearch}) =>
     <div className="row search-box">
-        <div className="col-sm-5">
+        <div className="col-sm-6">
             <div className="input-group">
                 <input type="text" className="form-control" name="query" onChange={handleChange}/>
                 <div className="input-group-addon">
