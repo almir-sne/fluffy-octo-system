@@ -18,14 +18,17 @@
 
     &.album {
       min-height: 520px !important;
+      max-height: 520px !important;
     }
 
     &.artist {
       min-height: 480px !important;
+      max-height: 480px !important;
     }
 
     &.track {
       min-height: 550px !important;
+      max-height: 550px !important;
     }
 
     &.simple-track {
