@@ -5,7 +5,7 @@ import "../styles/login.scss"
 class Login extends Component {
     render() {
         return (
-            <div className="login">
+            <div className="container-fluid login">
                 <h2> Welcome! You must login to Spotify to continue</h2>
                 <button className="btn btn-primary green-button" onClick={this.props.login}> Login</button>
             </div>
